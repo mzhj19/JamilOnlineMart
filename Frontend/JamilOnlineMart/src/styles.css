@@ -727,6 +727,10 @@ table.table.table-bordered th{
     width: 30%;
 }
 
+.footer-pagination{
+    text-align:center
+}
+
 /**/
 
 /* 
