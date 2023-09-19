@@ -14,6 +14,7 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { JamilMartValidators } from './validators/jamil-mart-validators';
 
 
 const routes: Routes = [
@@ -46,7 +47,7 @@ const routes: Routes = [
     NgbModule,
     ReactiveFormsModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, JamilMartValidators],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
