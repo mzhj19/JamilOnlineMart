@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { JamilMartFormService } from 'src/app/services/jamil-mart-form.service';
 
 @Component({
@@ -26,9 +27,11 @@ export class CheckoutComponent {
 
   constructor(private formBuilder: FormBuilder,
               private jamilMartFormService: JamilMartFormService,
-              private jamilMartValidators: JamilMartValidators) { }
+              private jamilMartValidators: JamilMartValidators,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.reviewCartDetails();
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
@@ -96,6 +99,18 @@ export class CheckoutComponent {
       data => {
         this.creditCardYears = data;
       }
+    );
+  }
+
+  reviewCartDetails() {
+    // subscribe to cartService.totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      totalQuantity => this.totalQuantity = totalQuantity
+    );
+
+    // subscribe to cartService.totalPrice
+    this.cartService.totalPrice.subscribe(
+      totalPrice => this.totalPrice = totalPrice
     );
   }
 
